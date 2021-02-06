@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+
+    agent { 
+        node { label 'jbeap' }
+    }
 
     stages {
         stage('Build') {
@@ -18,4 +21,4 @@ pipeline {
             }
         }
     }
-}
+}    
