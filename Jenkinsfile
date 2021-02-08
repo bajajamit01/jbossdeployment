@@ -1,7 +1,7 @@
 pipeline {
 
     agent { 
-        node { label 'jbeap' }
+        node { label 'maven' }
     }
 
     stages {

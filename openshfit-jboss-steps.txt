@@ -1,0 +1,14 @@
+
+1. oc import-image jboss-eap-72-dev:1 --confirm --from image-registry.openshift-image-registry.svc:5000/openshift/jboss-eap72-openshift:latest
+
+2. oc new-app  -i devtest/jboss-eap-72-dev:1  --name jbeap-test https://github.com/bajajamit01/jbossdeployment
+
+3. oc get pods 
+
+4 . oc logs -f <jbeap-test*>
+
+5. oc expose svc jbeap-test 
+
+6. http://jbeap-test-devtest.apps.cluster-0338.0338.sandbox129.opentlc.com/example/
+
+
