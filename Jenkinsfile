@@ -1,24 +1,37 @@
 pipeline {
-
-    agent { 
-        node { label 'maven' }
+    options {
+        // set a timeout of 30 minutes for this pipeline
+        timeout(time: 30, unit: 'MINUTES')
+    }
+    agent {
+      node {
+        // TODO: run this simple pipeline on jenkins 'master' node
+      }
     }
 
     stages {
-        stage('Build') {
+
+        stage('stage 1') {
             steps {
-                echo 'Building..'
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                                echo "stage 1: using project: ${openshift.project()} in cluster ${openshift.cluster()}"
+                        }
+                    }
+                }
             }
         }
-        stage('Test') {
+
+        // TODO: ADD A STAGE THAT SAYS HELLO
+
+        // TODO: ADD AN APPROVAL STAGE
+
+        stage('stage 3') {
             steps {
-                echo 'Testing..'
+                sh 'echo hello from stage 3!. This is the last stage...'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+
     }
-}    
+}
